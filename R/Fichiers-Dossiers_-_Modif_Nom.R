@@ -1,7 +1,7 @@
 ##### TITRE   :   MeF Nom Fichier       #####
 ##### AUTEUR  :   Ingrid ROCHE          #####
 ##### DATE DE CREATION      :   2016    #####
-##### DATE DE MODIFICATION  :   2020    #####
+##### DATE DE MODIFICATION  :   2021    #####
 
 
 
@@ -47,7 +47,7 @@
 
 ##### INSERTION #####
       list.file    <-  dput(dir())
-      list.insert  <-  c("2006-2012_iris2_Cl06_", "prostate_homme")
+      list.insert  <-  c("2006-2012_iris2_Cl06_", "cancer_prostate_homme")
       
       i          <- 2
       nbinsert   <- 2
@@ -136,7 +136,7 @@
       
 ##### SUPPRESSION/MODIFICATION #####
       
-      setwd("C:/IngridROCHE/Photographies/2007.03.08_Sortie_geologie")
+      setwd("C:/IngridROCHE/Pellicule")
       
       list.dirs       <-  dir()[which(!dir() %in% c(".jpeg", ".gif", ".mp4", ".MPG", ".mov"))]
       
