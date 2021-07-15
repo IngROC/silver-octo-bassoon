@@ -1,5 +1,5 @@
 ##### TITRE   :   MeF Nom Fichier       #####
-##### AUTEUR  :   Ingrid ROCHE          #####
+##### AUTEUR  :   IR                    #####
 ##### DATE DE CREATION      :   2016    #####
 ##### DATE DE MODIFICATION  :   2021    #####
 
@@ -7,7 +7,7 @@
 
 
 ##### DOSSIERS #####
-      setwd("C:/IngridROCHE")
+      setwd("C:/OneDrive/Images")
       dir()
       ls()
 
@@ -15,8 +15,8 @@
       
 
 ##### SUPPRESSION/MODIFICATION #####
-      list.file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Violet", dir())]))]
-      #list.invertfile <-  dir()[which(!dir() %in% c(".jpeg", ".gif", dir()[grep("Violet", dir())]))]
+      list.file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
+      #list.invertfile <-  dir()[which(!dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
 
       
       list.drop      <-  c(")")
@@ -91,7 +91,7 @@
 
 ##### MODIFICATION A L-INTERIEUR D-UN FICHIER #####
       list.file      <-  dir()[which(!dir() %in% c("Old", "Temp", dir()[grep("0-499", dir())]))]
-      dir.changing   <-  "C:/IngridROCHE/Application/R/SIMULATION/Output/Moran/Temp"
+      dir.changing   <-  "C:/Application/R/SIMULATION/Output/Moran/Temp"
       list.ToDrop    <-  c("; poisson ; SIR ;")
       list.ToChange  <-  c("; Normalite ;", "; Permuation ;", "; Permuation aleatoire ;", ";   ; Bootstrap parametrique ;", "; poisson ;", ";   ; EBI ;")
       list.changing   <-  c("; Normality ;", "; Randomisation ;", "; Bootstrap Non-parametrique ;",  "; Observed ; Bootstrap Parametrique ;", "; Poisson ;", "; RR ; EBI ;")
@@ -136,7 +136,7 @@
       
 ##### SUPPRESSION/MODIFICATION #####
       
-      setwd("C:/IngridROCHE/Pellicule")
+      setwd("C:/Pellicule")
       
       list.dirs       <-  dir()[which(!dir() %in% c(".jpeg", ".gif", ".mp4", ".MPG", ".mov"))]
       
