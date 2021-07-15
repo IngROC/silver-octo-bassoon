@@ -15,30 +15,30 @@
       
 
 ##### SUPPRESSION/MODIFICATION #####
-      list.file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
-      #list.invertfile <-  dir()[which(!dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
+      list_file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
+      #list_invertfile <-  dir()[which(!dir() %in% c(".jpeg", ".gif", dir()[grep("Fleurs", dir())]))]
 
       
-      list.drop      <-  c(")")
-      list.replace   <-  c(" (")
+      list_drop      <-  c(")")
+      list_replace   <-  c(" (")
       
       
       #i <- 2
       #k <- 7
       
-      for (i in 1:length(list.file)) {
-        name.toreplace  <-  list.file[i]
+      for (i in 1:length(list_file)) {
+        name_toreplace  <-  list_file[i]
       
-        for (k in 1:nchar(name.toreplace)) {
-          if (substring(name.toreplace,k,k+(nchar(list.drop)-1)) == list.drop) {
-            name.modif1  <-  paste(substring(name.toreplace,1,k-1),substring(name.toreplace,k+nchar(list.drop),nchar(name.toreplace)),sep="")
-            file.rename(name.toreplace,name.modif1)
-            rm(name.modif1)
+        for (k in 1:nchar(name_toreplace)) {
+          if (substring(name_toreplace,k,k+(nchar(list_drop)-1)) == list_drop) {
+            name_modif1  <-  paste(substring(name_toreplace,1,k-1),substring(name_toreplace,k+nchar(list_drop),nchar(name_toreplace)),sep="")
+            file.rename(name_toreplace,name_modif1)
+            rm(name_modif1)
             break
           }
         };  rm(k)
       
-        rm(name.toreplace)
+        rm(name_toreplace)
       };  rm(i)
 
 
@@ -46,55 +46,55 @@
 
 
 ##### INSERTION #####
-      list.file    <-  dput(dir())
-      list.insert  <-  c("2006-2012_iris2_Cl06_", "cancer_prostate_homme")
+      list_file    <-  dput(dir())
+      list_insert  <-  c("2006-2012_iris2_Cl06_", "cancer_prostate_homme")
       
       i          <- 2
       nbinsert   <- 2
       
-      for (i in 1:length(list.file)) {
-        name.toreplace  <-  list.file[i]
-        name.split1  <-  unlist(strsplit(name.toreplace, split="_"))
+      for (i in 1:length(list_file)) {
+        name_toreplace  <-  list_file[i]
+        name_split1  <-  unlist(strsplit(name_toreplace, split="_"))
         
-        for (nbinsert in 1:length(list.insert)) {
-          type.insert.split  <-  strsplit(list.insert[nbinsert], split="_")[[1]]
+        for (nbinsert in 1:length(list_insert)) {
+          type_insert_split  <-  strsplit(list_insert[nbinsert], split="_")[[1]]
           
-          if (FALSE %in% c(type.insert.split %in% name.split1)) {
+          if (FALSE %in% c(type_insert_split %in% name_split1)) {
             if (nbinsert == 1) {
-              ind.deb     <-  which(name.split1 %in% "DivBy-1")
-              ind.fin     <-  which(name.split1 %in% "Matrice2014")
-              name.split2  <- c(name.split1[1:ind.deb], type.insert.split, name.split1[ind.fin:length(name.split1)])
-              name.modif1  <- paste(name.split2, collapse="_")
-              rm(ind.deb, ind.fin)
+              ind_deb     <-  which(name_split1 %in% "DivBy-1")
+              ind_fin     <-  which(name_split1 %in% "Matrice2014")
+              name_split2  <- c(name_split1[1:ind_deb], type_insert_split, name_split1[ind_fin:length(name_split1)])
+              name_modif1  <- paste(name_split2, collapse="_")
+              rm(ind_deb, ind_fin)
             }#IF1.A
             if (nbinsert == 2) {
-              if ("name.modif1" %in% ls()) {
-                ind.deb      <-  which(name.split2 %in% c("ProbNull", paste("Scen", c(1:9), sep="")))
-                ind.fin      <-  which(name.split2 %in% "DivBy-1")
-                name.split3   <-  c(name.split2[1:ind.deb], type.insert.split, name.split2[ind.fin:length(name.split2)])
-                name.modif2  <- paste(name.split3, collapse="_")
-                file.rename(name.toreplace,name.modif1)
-                file.rename(name.modif1,name.modif2);  rm(name.split2, name.modif1, name.split3, name.modif2)
-                rm(ind.deb, ind.fin)
+              if ("name_modif1" %in% ls()) {
+                ind_deb      <-  which(name_split2 %in% c("ProbNull", paste("Scen", c(1:9), sep="")))
+                ind_fin      <-  which(name_split2 %in% "DivBy-1")
+                name_split3   <-  c(name_split2[1:ind_deb], type_insert_split, name_split2[ind_fin:length(name_split2)])
+                name_modif2  <- paste(name_split3, collapse="_")
+                file.rename(name_toreplace,name_modif1)
+                file.rename(name_modif1,name_modif2);  rm(name_split2, name_modif1, name_split3, name_modif2)
+                rm(ind_deb, ind_fin)
               }#IF1.B.1
             }#IF1.B
           }#IF1
           
-          rm(type.insert.split)
+          rm(type_insert_split)
         };  rm(nbinsert)
         
-        rm(name.split1, name.toreplace)
+        rm(name_split1, name_toreplace)
       };  rm(i)
 
 
 
 
 ##### MODIFICATION A L-INTERIEUR D-UN FICHIER #####
-      list.file      <-  dir()[which(!dir() %in% c("Old", "Temp", dir()[grep("0-499", dir())]))]
-      dir.changing   <-  "C:/Application/R/SIMULATION/Output/Moran/Temp"
-      list.ToDrop    <-  c("; poisson ; SIR ;")
-      list.ToChange  <-  c("; Normalite ;", "; Permuation ;", "; Permuation aleatoire ;", ";   ; Bootstrap parametrique ;", "; poisson ;", ";   ; EBI ;")
-      list.changing   <-  c("; Normality ;", "; Randomisation ;", "; Bootstrap Non-parametrique ;",  "; Observed ; Bootstrap Parametrique ;", "; Poisson ;", "; RR ; EBI ;")
+      list_file      <-  dir()[which(!dir() %in% c("Old", "Temp", dir()[grep("0-499", dir())]))]
+      dir_changing   <-  "C:/Application/R/SIMULATION/Output/Moran/Temp"
+      list_ToDrop    <-  c("; poisson ; SIR ;")
+      list_ToChange  <-  c("; Normalite ;", "; Permuation ;", "; Permuation aleatoire ;", ";   ; Bootstrap parametrique ;", "; poisson ;", ";   ; EBI ;")
+      list_changing   <-  c("; Normality ;", "; Randomisation ;", "; Bootstrap Non-parametrique ;",  "; Observed ; Bootstrap Parametrique ;", "; Poisson ;", "; RR ; EBI ;")
 
       
       nbfile   <-  1
@@ -102,32 +102,32 @@
       nbletter <-  47
       nbmod    <-  1
       
-      for (nbfile in 1:length(list.file)) {
-        name.file  <-  list.file[nbfile]
-        file       <-  read.table(name.file, header=FALSE, sep="\t", fill=TRUE, stringsAsFactors=FALSE)
+      for (nbfile in 1:length(list_file)) {
+        name_file  <-  list_file[nbfile]
+        file       <-  read.table(name_file, header=FALSE, sep="\t", fill=TRUE, stringsAsFactors=FALSE)
         
         for (nblgn in 1:nrow(file)) {
           lgn.ToChange  <-  file[nblgn,1]
           
           for (nbletter in 1:nchar(lgn.ToChange)) {
             
-            for (nbmod in 1:length(list.ToChange)) {
-              if (substring(lgn.ToChange,nbletter,nbletter+(nchar(list.ToChange[nbmod])-1)) == list.ToChange[nbmod]) {
-                lgn.changing   <-  paste(substring(lgn.ToChange,1,nbletter-1), list.changing[nbmod], substring(lgn.ToChange,nbletter+nchar(list.ToChange[nbmod]),nchar(lgn.ToChange)),sep="")
-                file[nblgn,1]  <-  lgn.changing
-                rm(lgn.changing)
+            for (nbmod in 1:length(list_ToChange)) {
+              if (substring(lgn.ToChange,nbletter,nbletter+(nchar(list_ToChange[nbmod])-1)) == list_ToChange[nbmod]) {
+                lgn_changing   <-  paste(substring(lgn_ToChange,1,nbletter-1), list_changing[nbmod], substring(lgn_ToChange,nbletter+nchar(list_ToChange[nbmod]),nchar(lgn_ToChange)),sep="")
+                file[nblgn,1]  <-  lgn_changing
+                rm(lgn_changing)
               }
             };  rm(nbmod)
 
           };  rm(nbletter)
           
-          rm(lgn.ToChange)
+          rm(lgn_ToChange)
         };  rm(nblgn)
         
-        path.file.ToSave  <-  paste(dir.changing, name.file, sep="/")
-        write.table(file, path.file.ToSave, row.names = FALSE, col.names=FALSE, eol="\n", quote=FALSE)
+        path_file_ToSave  <-  paste(dir_changing, name_file, sep="/")
+        write.table(file, path_file_ToSave, row.names = FALSE, col.names=FALSE, eol="\n", quote=FALSE)
         
-        rm(file, name.file)
+        rm(file, name_file)
       };  rm(i)
 
 
@@ -138,9 +138,9 @@
       
       setwd("C:/Pellicule")
       
-      list.dirs       <-  dir()[which(!dir() %in% c(".jpeg", ".gif", ".mp4", ".MPG", ".mov"))]
+      list_dirs       <-  dir()[which(!dir() %in% c(".jpeg", ".gif", ".mp4", ".MPG", ".mov"))]
       
-      list.file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Violet", dir())]))]
+      list_file       <-  dir()[which(dir() %in% c(".jpeg", ".gif", dir()[grep("Violet", dir())]))]
       
       dir()[1]
       file.mtime(dir()[1])
